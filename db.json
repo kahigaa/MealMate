@@ -1,0 +1,86 @@
+{
+    "meals": [
+      {
+        "id": 1,
+        "name": "Ugali with Sukuma Wiki",
+        "ingredients": "Maize flour, water, kale, onions, tomatoes, cooking oil, salt",
+        "day": "Monday",
+        "recipeLink": "",
+        "category": "Main",
+        "prepTime": "30 mins",
+        "culturalNote": "Kenya's staple food combination"
+      },
+      {
+        "id": 2,
+        "name": "Nyama Choma",
+        "ingredients": "Goat meat, salt, lemon, kachumbari (tomato-onion salad)",
+        "day": "Tuesday",
+        "recipeLink": "",
+        "category": "Main",
+        "prepTime": "2 hours",
+        "culturalNote": "Popular grilled meat dish often served at social gatherings"
+      },
+      {
+        "id": 3,
+        "name": "Githeri",
+        "ingredients": "Maize, beans, potatoes, onions, tomatoes, cooking oil, salt",
+        "day": "Wednesday",
+        "recipeLink": "",
+        "category": "Main",
+        "prepTime": "1 hour",
+        "culturalNote": "Traditional Kikuyu dish now enjoyed nationwide"
+      },
+      {
+        "id": 4,
+        "name": "Chapati with Beef Stew",
+        "ingredients": "Wheat flour, water, oil, salt, beef, tomatoes, onions, carrots, potatoes, spices",
+        "day": "Thursday",
+        "recipeLink": "",
+        "category": "Main",
+        "prepTime": "1.5 hours",
+        "culturalNote": "Influenced by Indian cuisine but now a Kenyan favorite"
+      },
+      {
+        "id": 5,
+        "name": "Mukimo",
+        "ingredients": "Potatoes, green peas, maize, pumpkin leaves, onions, salt",
+        "day": "Friday",
+        "recipeLink": "",
+        "category": "Main",
+        "prepTime": "45 mins",
+        "culturalNote": "Traditional Kikuyu dish often served during ceremonies"
+      },
+      {
+        "id": 6,
+        "name": "Mandazi",
+        "ingredients": "Wheat flour, sugar, coconut milk, baking powder, cardamom, oil for frying",
+        "day": "Saturday",
+        "recipeLink": "",
+        "category": "Breakfast",
+        "prepTime": "30 mins",
+        "culturalNote": "Kenyan version of doughnuts, perfect with chai"
+      },
+      {
+        "id": 7,
+        "name": "Pilau",
+        "ingredients": "Rice, beef, pilau masala, onions, garlic, ginger, potatoes, cooking oil",
+        "day": "Sunday",
+        "recipeLink": "",
+        "category": "Main",
+        "prepTime": "1 hour",
+        "culturalNote": "Flavorful rice dish with Swahili influences"
+      }
+    ],
+    "users": [
+      {
+        "id": 1,
+        "username": "kenyanFoodie",
+        "password": "nyamaChoma123"
+      },
+      {
+        "id": 2,
+        "username": "nairobichef",
+        "password": "chapati2023"
+      }
+    ]
+  }
