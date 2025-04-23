@@ -112,6 +112,16 @@
 .recipe-link:hover {
   background-color: #3e8e41;
 }
+.loading, .error {
+  padding: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.error {
+  color: #d32f2f;
+}
 
 /* Custom scrollbar */
 .meal-holder-container::-webkit-scrollbar {
