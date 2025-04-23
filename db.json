@@ -5,7 +5,7 @@
         "name": "Ugali with Sukuma Wiki",
         "ingredients": "Maize flour, water, kale, onions, tomatoes, cooking oil, salt",
         "day": "Monday",
-        "recipeLink": "",
+        "recipeLink": "https://shorturl.at/ojQlX",
         "imageUrl":"public/Images/ugali sukuma.jpeg"
       },
       {
@@ -13,7 +13,7 @@
         "name": "Nyama Choma",
         "ingredients": "Goat meat, salt, lemon, kachumbari (tomato-onion salad)",
         "day": "Tuesday",
-        "recipeLink": "",
+        "recipeLink": "https://shorturl.at/An4Ki",
         "imageUrl":"public/Images/nyama choma.jpeg"
       },
       {
@@ -21,7 +21,7 @@
         "name": "Githeri",
         "ingredients": "Maize, beans, potatoes, onions, tomatoes, cooking oil, salt",
         "day": "Wednesday",
-        "recipeLink": "",
+        "recipeLink": "https://shorturl.at/zQslU",
         "imageUrl":"public/Images/githeri.jpeg"
       },
       {
@@ -29,7 +29,7 @@
         "name": "Chapati with Beef Stew",
         "ingredients": "Wheat flour, water, oil, salt, beef, tomatoes, onions, carrots, potatoes, spices",
         "day": "Thursday",
-        "recipeLink": "",
+        "recipeLink": "https://shorturl.at/NOZiz",
         "imageUrl":"public/Images/chapati beef.jpeg"
       },
       {
@@ -37,7 +37,7 @@
         "name": "Mukimo",
         "ingredients": "Potatoes, green peas, maize, pumpkin leaves, onions, salt",
         "day": "Friday",
-        "recipeLink": "",
+        "recipeLink": "https://shorturl.at/3Myt3",
         "imageUrl":"public/Images/mukimo.jpeg"
       },
       {
@@ -45,6 +45,7 @@
         "name": "Mandazi",
         "ingredients": "Wheat flour, sugar, coconut milk, baking powder, cardamom, oil for frying",
         "day": "Saturday",
+        "recipeLink": "https://rb.gy/578e9n",
         "imageUrl":"public/Images/mandazi.jpeg"
       },
       {
@@ -52,7 +53,7 @@
         "name": "Pilau",
         "ingredients": "Rice, beef, pilau masala, onions, garlic, ginger, potatoes, cooking oil",
         "day": "Sunday",
-        "recipeLink": "",
+        "recipeLink": "https://rb.gy/pp48ix",
        "imageUrl":"public/Images/pilau.jpeg"
       }
     ],
