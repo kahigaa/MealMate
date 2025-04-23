@@ -27,15 +27,3 @@ export const updateMeal = async (id, updatedMeal) => {
   return await response.json();
 };
 
-export const deleteMeal = async (id) => {
-  const response = await fetch(`${API_URL}/meals/${id}`, {
-    method: 'DELETE',
-  });
-  return await response.json();
-};
-
-export const loginUser = async (credentials) => {
-  const response = await fetch(`${API_URL}/users?username=${credentials.username}&password=${credentials.password}`);
-  const users = await response.json();
-  return users[0] || null;
-};
