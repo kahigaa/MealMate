@@ -14,5 +14,19 @@ const AddMeal = () => {
     imageUrl :'' 
   });
 
-}
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await createMeal(meal);
+    navigate('/weekly');
+  };
+
+  return (
+    <div className="meal-form-container">
+      <h2>Add New Meal</h2>
+      <MealForm meal={meal} setMeal={setMeal} onSubmit={handleSubmit} />
+    </div>
+  );
+};
+
+export default AddMeal; 
 
