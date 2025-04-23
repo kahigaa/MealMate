@@ -5,55 +5,55 @@
         "name": "Ugali with Sukuma Wiki",
         "ingredients": "Maize flour, water, kale, onions, tomatoes, cooking oil, salt",
         "day": "Monday",
-        "recipeLink": ""
-        
+        "recipeLink": "",
+        "imageUrl":"public/Images/ugali sukuma.jpeg"
       },
       {
         "id": 2,
         "name": "Nyama Choma",
         "ingredients": "Goat meat, salt, lemon, kachumbari (tomato-onion salad)",
         "day": "Tuesday",
-        "recipeLink": ""
-        
+        "recipeLink": "",
+        "imageUrl":"public/Images/nyama choma.jpeg"
       },
       {
         "id": 3,
         "name": "Githeri",
         "ingredients": "Maize, beans, potatoes, onions, tomatoes, cooking oil, salt",
         "day": "Wednesday",
-        "recipeLink": ""
-        
+        "recipeLink": "",
+        "imageUrl":"public/Images/githeri.jpeg"
       },
       {
         "id": 4,
         "name": "Chapati with Beef Stew",
         "ingredients": "Wheat flour, water, oil, salt, beef, tomatoes, onions, carrots, potatoes, spices",
         "day": "Thursday",
-        "recipeLink": ""
-        
+        "recipeLink": "",
+        "imageUrl":"public/Images/chapati beef.jpeg"
       },
       {
         "id": 5,
         "name": "Mukimo",
         "ingredients": "Potatoes, green peas, maize, pumpkin leaves, onions, salt",
         "day": "Friday",
-        "recipeLink": ""
-        
+        "recipeLink": "",
+        "imageUrl":"public/Images/mukimo.jpeg"
       },
       {
         "id": 6,
         "name": "Mandazi",
         "ingredients": "Wheat flour, sugar, coconut milk, baking powder, cardamom, oil for frying",
-        "day": "Saturday"
-        
+        "day": "Saturday",
+        "imageUrl":"public/Images/mandazi.jpeg"
       },
       {
         "id": 7,
         "name": "Pilau",
         "ingredients": "Rice, beef, pilau masala, onions, garlic, ginger, potatoes, cooking oil",
         "day": "Sunday",
-        "recipeLink": ""
-       
+        "recipeLink": "",
+       "imageUrl":"public/Images/pilau.jpeg"
       }
     ],
     "users": [
