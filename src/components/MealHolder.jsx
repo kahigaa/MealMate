@@ -1,9 +1,42 @@
-import React from 'react'
-import propTypes from 'prop-types'
-import '/MealHolder.css'
+import React,{useState, useEffect} from 'react'
+import propTypes from 'prop-types';
+import { fetchMeals }  from '../API/meal';
+import '/MealHoldr.css'
+ 
 
-function MealHolder({ meals, selectedDay, onDaySelect }) {
-  return (
+function MealHolder({ selectedDay, onDaySelect}) {
+    const [meals, setMeals] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+
+    useEffect(() => {
+        const getMeals = async () => {
+            try {
+                const data = await fetchMeals();
+                setMeals(data);
+            }
+            catch (error) {
+                setError(error.message);
+            }
+            finally {
+                setLoading(false);
+            }
+        }
+        getMeals();
+    }, []);
+
+    if (loading) 
+        return <div className='loading'>
+            Loading meals...
+        </div>
+    if (error)
+        return <div>
+            Error: {error}
+        </div>
+
+ 
+return (
     <div className='meal-holder-container'>
     <div className='meal-scroll-container'>
         {meals.map((meal) => (
@@ -54,19 +87,14 @@ function MealHolder({ meals, selectedDay, onDaySelect }) {
     </div>
     </div>
   )
+  
 }
-MealHolder.propTypes = {
-    meals: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        ingredients: PropTypes.string.isRequired,
-        day: PropTypes.string.isRequired,
-        recipeLink: PropTypes.string,
-        imageUrl: PropTypes.string.isRequired,
-      })
-    ).isRequired,
+  MealHolder.propTypes = {
     selectedDay: PropTypes.string,
     onDaySelect: PropTypes.func.isRequired,
   };
-export default MealHolder
+MealHolder.defaultProps = {
+    selectedDay: '',
+}  
+
+export default MealHolder;
