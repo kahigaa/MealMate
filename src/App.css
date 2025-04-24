@@ -1,42 +1,45 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.app-container {
+    display: flex;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 20px;
+    height: 100vh;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .add-meal-form-container {
+    flex: 1;
+    min-width: 400px;
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+    height: 100vh;
+    overflow-y: auto;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  
+  .meals-list {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
+  
+  /* Responsive layout */
+  @media (max-width: 768px) {
+    .app-container {
+      flex-direction: column;
+      height: auto;
+    }
+    
+    .add-meal-form-container {
+      position: static;
+      min-width: auto;
+      height: auto;
+    }
+    .meal-holder-container {
+        margin-left: 0;
+        margin-top: 20px;
+        height: auto;
+        max-height: 50vh;
+      }
+  }
