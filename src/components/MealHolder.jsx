@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react'
-import propTypes from 'prop-types';
 import { fetchMeals }  from '../API/meal';
-import '/MealHoldr.css'
+import '/MealHolder.css'
  
 
 function MealHolder({ selectedDay, onDaySelect}) {
@@ -89,12 +88,5 @@ return (
   )
   
 }
-  MealHolder.propTypes = {
-    selectedDay: PropTypes.string,
-    onDaySelect: PropTypes.func.isRequired,
-  };
-MealHolder.defaultProps = {
-    selectedDay: '',
-}  
 
 export default MealHolder;
