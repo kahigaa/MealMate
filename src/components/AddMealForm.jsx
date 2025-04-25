@@ -23,7 +23,15 @@ const AddMeal - () => {
     setFormData({ ...formData, [name]: value });
   };
 
-
+  
+//new meal to jspn server
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!formData.name || !formData.day){
+    setError ('meal name and day is required')
+    return;
+  }
+}
 
 
 
