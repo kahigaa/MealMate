@@ -24,7 +24,7 @@ const AddMeal - () => {
   };
 
   
-//new meal to jspn server
+//form validation 
 const handleSubmit = async (e) => {
   e.preventDefault();
   if (!formData.name || !formData.day){
