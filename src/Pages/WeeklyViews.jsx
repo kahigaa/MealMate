@@ -1,4 +1,4 @@
-// WeeklyView.js
+
 import React from 'react';
 import { format, startOfWeek, addDays } from 'date-fns';
 
