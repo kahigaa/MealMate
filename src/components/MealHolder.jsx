@@ -8,6 +8,7 @@ function MealHolder({ selectedDay, onDaySelect}) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    
 
     useEffect(() => {
         const getMeals = async () => {
@@ -23,11 +24,11 @@ function MealHolder({ selectedDay, onDaySelect}) {
             }
         }
         getMeals();
-    }, []);
+    },[]);
 
     if (loading) 
         return <div className='loading'>
-            Loading meals...
+                 Loading meals...
         </div>
     if (error)
         return <div>
@@ -75,8 +76,8 @@ return (
                      target='_blank'
                      rel='noopener noreferrer'
                      className='recipe-link'
-                     onClick={(e) => e.stopPropagation()}
-                    >
+                     onClick={(e) => e.stopPropagation()}>
+
                     View Recipe
                     </a>
                 )}
