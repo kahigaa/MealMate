@@ -40,3 +40,38 @@
 .read-the-docs {
   color: #888;
 }
+.meal-submit-button{
+  background-color:#4CAF50;
+  color: white;
+  padding: 12px 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.5rem ;
+  transition: background-color 0.3s;
+}
+.meal-submit-button:hover:not(:disabled){
+  background-color: #45a;
+}
+.meal-submit-button:disabled{
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+.meal-submit-button.loading{
+  background-color: #2E7D32;
+}
+.spinner{
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  border: 2px solid rgb(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 8px;
+}
+@keyframes spin{
+  to {
+    transform: rotate(360deg);
+  }
+}
