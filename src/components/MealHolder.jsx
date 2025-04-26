@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import { fetchMeals }  from '../API/meal';
-import '/MealHolder.css'
+import './MealHolder.css'
  
 
 function MealHolder({ selectedDay, onDaySelect}) {
@@ -28,7 +28,7 @@ function MealHolder({ selectedDay, onDaySelect}) {
 
     if (loading) 
         return <div className='loading'>
-                 Loading meals...
+                 Loading Meals...
         </div>
     if (error)
         return <div>
