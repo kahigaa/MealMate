@@ -31,6 +31,7 @@ function MealHolder({ selectedDay, onDaySelect}) {
                  Loading Meals...
         </div>
     if (error)
+
         return <div>
             Error: {error}
         </div>
