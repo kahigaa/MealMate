@@ -32,7 +32,12 @@ export const updateMeal = async (id, mealData) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(mealData),
+      body: JSON.stringify({
+        ...mealData,
+        ingredients: Array.isArray(mealData.ingredients)
+          ? mealData.ingredients
+          : mealData.ingredients.split(",").map((i) => i.trim()),
+      }),
     });
     if (!response.ok) {
       throw new Error("Failed to update meal");

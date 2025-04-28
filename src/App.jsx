@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchMeals, addMeal, updateMeal } from './API/meal'; // Assume updateMeal exists
+import { fetchMeals, addMeal, updateMeal } from './API/meal';
 import LoginPage from './Pages/LoginPage';
 import AddMealForm from './components/AddMealForm';
 import MealHolder from './components/MealHolder';
@@ -9,8 +9,8 @@ function App() {
   const [user, setUser] = useState(null);
   const [meals, setMeals] = useState([]);
   const [error, setError] = useState(null);
-  const [editingMeal, setEditingMeal] = useState(null); // Track meal being edited
-  const [formData, setFormData] = useState({}); // Store form data
+  const [editingMeal, setEditingMeal] = useState(null);
+  const [formData, setFormData] = useState({});
 
   useEffect(() => {
     if (user) {
@@ -38,7 +38,12 @@ function App() {
 
   const handleEdit = (meal) => {
     setEditingMeal(meal);
-    setFormData(meal); // Pre-fill form
+    setFormData({
+      ...meal,
+      ingredients: Array.isArray(meal.ingredients)
+        ? meal.ingredients.join(', ')
+        : meal.ingredients || '',
+    });
   };
 
   const handleFormChange = (e) => {
@@ -49,7 +54,17 @@ function App() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      const updatedMeal = await updateMeal(editingMeal.id, formData); // API call
+      console.log('Submitting formData:', formData); // Debug log
+      const mealData = {
+        ...formData,
+        ingredients: formData.ingredients
+          .split(',')
+          .map((i) => i.trim())
+          .filter((i) => i),
+      };
+      console.log('Formatted mealData for API:', mealData); // Debug log
+      const updatedMeal = await updateMeal(editingMeal.id, mealData);
+      console.log('Received updatedMeal:', updatedMeal); // Debug log
       setMeals(
         meals.map((meal) =>
           meal.id === editingMeal.id ? updatedMeal : meal
@@ -58,7 +73,7 @@ function App() {
       setEditingMeal(null);
       setFormData({});
     } catch (err) {
-      setError('cannot update try again.');
+      setError('Failed to update meal: ' + err.message);
       console.error('Error updating meal:', err);
     }
   };
@@ -119,13 +134,8 @@ function App() {
                 <input
                   type="text"
                   name="ingredients"
-                  value={formData.ingredients?.join(', ') || ''}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      ingredients: e.target.value.split(',').map((i) => i.trim()),
-                    })
-                  }
+                  value={formData.ingredients || ''}
+                  onChange={handleFormChange}
                 />
               </label>
               <label>
