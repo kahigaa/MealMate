@@ -1,70 +1,140 @@
-<<<<<<< HEAD
-import { useState } from 'react';
-import MealForm from '../../components/MealForm';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import '../RecipeForm.css';
 
-const AddMeal = () => {
-  const { createMeal } = useMeals();
-  const navigate = useNavigate();
-  const [meal, setMeal] = useState({
+const AddMealForm = ({ onMealAdded }) => {  
+  const [formData, setFormData] = useState({
     name: '',
     ingredients: '',
-    day: 'Monday',
+    day: 'Sunday',
     recipeLink: '',
-    imageUrl :'' 
+    imageUrl: ''
   });
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createMeal(meal);
-    navigate('/weekly');
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const ingredientsArray = formData.ingredients
+        .split(',')
+        .map(item => item.trim())
+        .filter(item => item.length > 0);
+    
+      if (ingredientsArray.length === 0) {
+        setError('Please enter at least one ingredient');
+        setIsLoading(false);
+        return;
+      }
+    
+      const mealData = {
+        ...formData,
+        ingredients: ingredientsArray
+      };
+    
+      onMealAdded(mealData);
+      
+    
+      setFormData({
+        name: '',
+        ingredients: '',
+        day: 'Sunday',
+        recipeLink: '',
+        imageUrl: ''
+      });
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setError(err.message || 'Failed to save meal');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <div className="meal-form-container">
+    <div className="add-meal-form-container">
       <h2>Add New Meal</h2>
-      <MealForm meal={meal} setMeal={setMeal} onSubmit={handleSubmit} />
+      
+      {error && <div className="error-message">{error}</div>}
+
+      <form onSubmit={handleSubmit}>
+      <div className="form-group">
+          <label>Meal Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Ingredients:</label>
+          <textarea
+            name="ingredients"
+            value={formData.ingredients}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Day:</label>
+          <select
+            name="day"
+            value={formData.day}
+            onChange={handleChange}
+          >
+            {['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map(day => (
+              <option key={day} value={day}>{day}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>Recipe Link:</label>
+          <input
+            type="url"
+            name="recipeLink"
+            value={formData.recipeLink}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Image URL:</label>
+          <input
+            type="text"
+            name="imageUrl"
+            value={formData.imageUrl}
+            onChange={handleChange}
+            placeholder="public/Images/example.jpg"
+          />
+        </div>
+
+        <button 
+          type="submit" 
+          className="submit-btn"
+          disabled={isLoading}
+        >
+          {isLoading ? 'Submitting...' : 'Add Meal'}
+        </button>
+      </form>
     </div>
   );
 };
 
-export default AddMeal; 
-
-=======
-import {useEffect, useState} from 'react';
-import  {useNavigate} from 'react-router-dom';
-import axos from 'axios'
-
-const AddMeal - () => {
-    const navigate = useNavigate();
-     //form inputs and errros
-     const [ formData, setFormData] = useState({
-        day:''
-        name:''
-        ingredients:''
-        imageUrl:''
-        recipeLink:''
-
-     });
-     const [error. setError] = useSate('');
-
-}
-
-  // Handle form input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  
-//new meal to jspn server
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  if (!formData.name || !formData.day){
-    setError ('meal name and day is required')
-    return;
-  }
-}
+export default AddMealForm;
 
 
 
@@ -74,6 +144,3 @@ const handleSubmit = async (e) => {
 
 
 
-
-    ]
->>>>>>> 37b368d7d66f4997e501be91bc4433e0abe7962e
