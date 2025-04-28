@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { fetchMeals, addMeal, updateMeal } from "./API/meal";
-import LoginPage from "./Pages/LoginPage";
-import AddMealForm from "./components/AddMealForm";
-import MealHolder from "./components/MealHolder";
-import "./App.css";
+import React, { useState, useEffect } from 'react';
+import { fetchMeals, addMeal, updateMeal } from './API/meal'; // Assume updateMeal exists
+import LoginPage from './Pages/LoginPage';
+import AddMealForm from './components/AddMealForm';
+import MealHolder from './components/MealHolder';
+import './App.css';
 
 function App() {
   const [user, setUser] = useState(null);
   const [meals, setMeals] = useState([]);
   const [error, setError] = useState(null);
-  const [editingMeal, setEditingMeal] = useState(null);
-  const [formData, setFormData] = useState({});
+  const [editingMeal, setEditingMeal] = useState(null); // Track meal being edited
+  const [formData, setFormData] = useState({}); // Store form data
 
   useEffect(() => {
     if (user) {
@@ -19,8 +19,8 @@ function App() {
           const data = await fetchMeals();
           setMeals(data);
         } catch (err) {
-          setError("Failed to load meals. Please try again.");
-          console.error("Error fetching meals:", err);
+          setError('Failed to load meals. Please try again.');
+          console.error('Error fetching meals:', err);
         }
       };
       loadMeals();
@@ -37,8 +37,13 @@ function App() {
   };
 
   const handleEdit = (meal) => {
-    setEdittingMeal(meal);
-    setFormData(meal);
+    setEditingMeal(meal);
+    setFormData(meal); // Pre-fill form
+  };
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleFormSubmit = async (e) => {
@@ -46,14 +51,21 @@ function App() {
     try {
       const updatedMeal = await updateMeal(editingMeal.id, formData); // API call
       setMeals(
-        meals.map((meal) => (meal.id === editingMeal.id ? updatedMeal : meal))
+        meals.map((meal) =>
+          meal.id === editingMeal.id ? updatedMeal : meal
+        )
       );
       setEditingMeal(null);
       setFormData({});
     } catch (err) {
-      setError(" Please try again.");
-      console.error("Error updating meal:", err);
+      setError('cannot update try again.');
+      console.error('Error updating meal:', err);
     }
+  };
+
+  const cancelEdit = () => {
+    setEditingMeal(null);
+    setFormData({});
   };
 
   const handleLoginSuccess = (loggedInUser) => {
@@ -76,15 +88,73 @@ function App() {
           <button onClick={() => setError(null)}>×</button>
         </div>
       )}
-
       <div className="top-bar">
-        <button className="logout-btn" onClick={handleLogout}>
-          Logout
-        </button>
+        <button className="logout-btn" onClick={handleLogout}>Logout</button>
       </div>
       <div className="content">
+        {editingMeal && (
+          <div className="edit-form">
+            <h3>Edit Meal</h3>
+            <form onSubmit={handleFormSubmit}>
+              <label>
+                Name:
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name || ''}
+                  onChange={handleFormChange}
+                />
+              </label>
+              <label>
+                Day:
+                <input
+                  type="text"
+                  name="day"
+                  value={formData.day || ''}
+                  onChange={handleFormChange}
+                />
+              </label>
+              <label>
+                Ingredients (comma-separated):
+                <input
+                  type="text"
+                  name="ingredients"
+                  value={formData.ingredients?.join(', ') || ''}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      ingredients: e.target.value.split(',').map((i) => i.trim()),
+                    })
+                  }
+                />
+              </label>
+              <label>
+                Image URL:
+                <input
+                  type="text"
+                  name="imageUrl"
+                  value={formData.imageUrl || ''}
+                  onChange={handleFormChange}
+                />
+              </label>
+              <label>
+                Recipe Link:
+                <input
+                  type="text"
+                  name="recipeLink"
+                  value={formData.recipeLink || ''}
+                  onChange={handleFormChange}
+                />
+              </label>
+              <button type="submit">Save</button>
+              <button type="button" onClick={cancelEdit}>
+                Cancel
+              </button>
+            </form>
+          </div>
+        )}
         <AddMealForm onMealAdded={handleMealAdded} />
-        <MealHolder meals={meals} />
+        <MealHolder meals={meals} onEdit={handleEdit} />
       </div>
     </div>
   );
