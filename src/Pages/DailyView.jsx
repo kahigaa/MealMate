@@ -38,7 +38,11 @@ const DailyView = () => {
 
   return (
     <div className="daily-view">
-      <Header onLogout={handleLogout} />
+      <Header>
+        <button onClick={handleLogout} className="action-btn logout-btn">
+          Logout
+        </button>
+      </Header>
       <div className="daily-view-header">
         <h1>Meals for {day}</h1>
         <div className="daily-view-actions">
