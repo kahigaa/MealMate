@@ -2,7 +2,7 @@ const API_URL = 'http://localhost:3000/meals';
 
 export const addMeal = async (meal) => {
   console.log('Sending meal data:', meal);
-  const response = await fetch(`${API_URL}/meals`, {
+  const response = await fetch(`${API_URL}`, { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -25,4 +25,5 @@ export const fetchMeals = async () => {
     throw error;
   }
 };
+
 
