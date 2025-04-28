@@ -1,39 +1,50 @@
 import React, { useState, useEffect } from 'react';
-import { addMeal, fetchMeals } from './API/meal'; 
+import { fetchMeals, addMeal } from './API/meal';
+import LoginPage from './Pages/LoginPage';
 import AddMealForm from './components/AddMealForm';
 import MealHolder from './components/MealHolder';
 import './App.css';
 
 function App() {
+  const [user, setUser] = useState(null);
   const [meals, setMeals] = useState([]);
   const [error, setError] = useState(null);
 
-  // Fetch initial meals
   useEffect(() => {
-    const loadMeals = async () => {
-      try {
-        const data = await fetchMeals();
-        console.log('Fetched meals:', data);
-        setMeals(data);
-      } catch (err) {
-        setError('Failed to load meals. Please try again.');
-        console.error('Error fetching meals:', err);
-      }
-    };
-  
-    loadMeals();
-  }, []);
+    if (user) {
+      const loadMeals = async () => {
+        try {
+          const data = await fetchMeals();
+          setMeals(data);
+        } catch (err) {
+          setError('Failed to load meals. Please try again.');
+          console.error('Error fetching meals:', err);
+        }
+      };
+      loadMeals();
+    }
+  }, [user]);
 
   const handleMealAdded = async (mealData) => {
     try {
       const newMeal = await addMeal(mealData);
-      console.log('Added meal:', newMeal);
-      setMeals((prev) => [...prev, newMeal]);
+      setMeals(prevMeals => [...prevMeals, newMeal]);
     } catch (err) {
       setError(err.message);
-      console.error('Error adding meal:', err);
     }
   };
+
+  const handleLoginSuccess = (loggedInUser) => {
+    setUser(loggedInUser);
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+  };
+
+  if (!user) {
+    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+  }
 
   return (
     <div className="app-container">
@@ -43,10 +54,18 @@ function App() {
           <button onClick={() => setError(null)}>×</button>
         </div>
       )}
+
+      <div className="top-bar">
+        <button className="logout-btn" onClick={handleLogout}>Logout</button>
+      </div >
+<div className="content">
       <AddMealForm onMealAdded={handleMealAdded} />
       <MealHolder meals={meals} />
+</div>      
     </div>
   );
 }
 
 export default App;
+
+
