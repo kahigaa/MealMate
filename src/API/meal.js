@@ -27,7 +27,8 @@ export const fetchMeals = async () => {
 
 export const updateMeal = async (id, mealData) => {
   try {
-    const response = await fetch(`/api/meals/${id}`, {
+    console.log("Sending update data for meal ID:", id, mealData);
+    const response = await fetch(`${API_URL}/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -40,10 +41,17 @@ export const updateMeal = async (id, mealData) => {
       }),
     });
     if (!response.ok) {
-      throw new Error("Failed to update meal");
+      const errorText = await response.text();
+      console.error(
+        `Update meal failed: Status ${response.status}, ${errorText}`
+      );
+      throw new Error(errorText || "Failed to update meal");
     }
-    return await response.json();
+    const updatedMeal = await response.json();
+    console.log("Update meal response:", updatedMeal);
+    return updatedMeal;
   } catch (error) {
-    throw new Error(error.message);
+    console.error("Error updating meal:", error);
+    throw error;
   }
 };
