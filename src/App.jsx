@@ -36,7 +36,7 @@ function App() {
     }
   };
 
-  const handleEdt = (meal) => {
+  const handleEdit = (meal) => {
     setEdittingMeal(meal);
     setFormData(meal);
   };
@@ -51,7 +51,7 @@ function App() {
       setEditingMeal(null);
       setFormData({});
     } catch (err) {
-      setError("Failed to update meal. Please try again.");
+      setError(" Please try again.");
       console.error("Error updating meal:", err);
     }
   };
