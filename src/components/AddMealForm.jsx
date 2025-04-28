@@ -26,13 +26,23 @@ const AddMealForm = ({ onMealAdded }) => {
     setError(null);
 
     try {
+      const ingredientsArray = formData.ingredients
+        .split(',')
+        .map(item => item.trim())
+        .filter(item => item.length > 0);
+    
+      if (ingredientsArray.length === 0) {
+        setError('Please enter at least one ingredient');
+        setIsLoading(false);
+        return;
+      }
+    
       const mealData = {
         ...formData,
-        ingredients: formData.ingredients.split(',').map(item => item.trim())
+        ingredients: ingredientsArray
       };
-
-      
-      onMealAdded(mealData);  
+    
+      onMealAdded(mealData);
       
     
       setFormData({
@@ -125,3 +135,12 @@ const AddMealForm = ({ onMealAdded }) => {
 };
 
 export default AddMealForm;
+
+
+
+
+
+
+
+
+

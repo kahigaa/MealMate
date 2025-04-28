@@ -24,7 +24,24 @@
   margin-right: -10px;
 }
 
+/* Scrollbar styling */
+.meal-cards-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
 
+.meal-cards-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.meal-cards-wrapper::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.meal-cards-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
 
 .no-meals-message {
   color: #666;

@@ -1,45 +1,45 @@
 .app-container {
-    display: flex;
-    padding: 20px;
-    max-width: 1400px;
-    margin: 0 auto;
-    gap: 20px;
-    height: 100vh;
+  display: flex;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 20px;
+  height: 100vh;
+}
+
+.add-meal-form-container {
+  flex: 1;
+  min-width: 400px;
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.meals-list {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+    height: auto;
   }
   
   .add-meal-form-container {
-    flex: 1;
-    min-width: 400px;
-    position: sticky;
-    top: 20px;
-    align-self: flex-start;
-    height: 100vh;
-    overflow-y: auto;
+    position: static;
+    min-width: auto;
+    height: auto;
   }
-  
-  .meals-list {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  
-  @media (max-width: 768px) {
-    .app-container {
-      flex-direction: column;
+  .meal-holder-container {
+      margin-left: 0;
+      margin-top: 20px;
       height: auto;
+      max-height: 50vh;
     }
-    
-    .add-meal-form-container {
-      position: static;
-      min-width: auto;
-      height: auto;
-    }
-    .meal-holder-container {
-        margin-left: 0;
-        margin-top: 20px;
-        height: auto;
-        max-height: 50vh;
-      }
-  }
+}

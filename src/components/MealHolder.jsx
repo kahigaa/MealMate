@@ -1,5 +1,5 @@
 import React from 'react';
-import MealCard from './MealsCard';
+import MealCard from './MealCard';
 import '../MealHolder.css';
 
 const MealHolder = ({ meals }) => {
