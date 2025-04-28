@@ -1,77 +1,45 @@
-#root {
-  max-width: 1280px;
+.app-container {
+  display: flex;
+  padding: 20px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  gap: 20px;
+  height: 100vh;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.add-meal-form-container {
+  flex: 1;
+  min-width: 400px;
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
+  height: 100vh;
+  overflow-y: auto;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.meals-list {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+    height: auto;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .add-meal-form-container {
+    position: static;
+    min-width: auto;
+    height: auto;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-.meal-submit-button{
-  background-color:#4CAF50;
-  color: white;
-  padding: 12px 20px;
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
-  font-size: 1.5rem ;
-  transition: background-color 0.3s;
-}
-.meal-submit-button:hover:not(:disabled){
-  background-color: #45a;
-}
-.meal-submit-button:disabled{
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-.meal-submit-button.loading{
-  background-color: #2E7D32;
-}
-.spinner{
-  display: inline-block;
-  height: 16px;
-  width: 16px;
-  border: 2px solid rgb(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: white;
-  animation: spin 1s ease-in-out infinite;
-  margin-right: 8px;
-}
-@keyframes spin{
-  to {
-    transform: rotate(360deg);
-  }
+  .meal-holder-container {
+      margin-left: 0;
+      margin-top: 20px;
+      height: auto;
+      max-height: 50vh;
+    }
 }

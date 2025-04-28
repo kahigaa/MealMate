@@ -1,36 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import { addMeal, fetchMeals } from './API/meal'; 
+import AddMealForm from './components/AddMealForm';
+import MealHolder from './components/MealHolder';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [meals, setMeals] = useState([]);
+  const [error, setError] = useState(null);
+
+  // Fetch initial meals
+  useEffect(() => {
+    const loadMeals = async () => {
+      try {
+        const data = await fetchMeals();
+        console.log('Fetched meals:', data);
+        setMeals(data);
+      } catch (err) {
+        setError('Failed to load meals. Please try again.');
+        console.error('Error fetching meals:', err);
+      }
+    };
+  
+    loadMeals();
+  }, []);
+
+  const handleMealAdded = async (mealData) => {
+    try {
+      const newMeal = await addMeal(mealData);
+      console.log('Added meal:', newMeal);
+      setMeals((prev) => [...prev, newMeal]);
+    } catch (err) {
+      setError(err.message);
+      console.error('Error adding meal:', err);
+    }
+  };
 
   return (
-    <>
-      <MealSubmitButton 
-        onClick={handleMealSubmit}
-        isLoading={isSubmitting}
-        disabled={!mealDataValid}
-        buttonText='Save Meal Entry'
-      
-      />
-      <MealHolder />
-    </>
+    <div className="app-container">
+      {error && (
+        <div className="error-message">
+          {error}
+          <button onClick={() => setError(null)}>×</button>
+        </div>
+      )}
+      <AddMealForm onMealAdded={handleMealAdded} />
+      <MealHolder meals={meals} />
+    </div>
   );
-
-  return App() {
-    const [count, setCount] = usestate(0);
-
-    return(
-      <BrowserRouter>
-      <Routes>
-      <Route path="/" element={<MeanHolder/>} />
-      <Route path="/add-meal" element={AddMeal/>} />
-      </Routes>
-      </BrowserRouter>
-    )
-  }
 }
 
 export default App;
