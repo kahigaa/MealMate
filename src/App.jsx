@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchMeals, addMeal, updateMeal } from './API/meal';
+import { fetchMeals, addMeal, updateMeal, deleteMeal } from './API/meal';
 import LoginPage from './Pages/LoginPage';
 import AddMealForm from './components/AddMealForm';
 import MealHolder from './components/MealHolder';
@@ -42,6 +42,16 @@ function App() {
       ...meal,
       ingredients: Array.isArray(meal.ingredients) ? meal.ingredients : meal.ingredients?.split(',') || []
     });
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteMeal(id);
+      setMeals(meals.filter(meal => meal.id !== id));
+    } catch (err) {
+      setError('Failed to delete meal. Please try again.');
+      console.error('Error deleting meal:', err);
+    }
   };
 
   const handleFormChange = (e) => {
@@ -141,7 +151,7 @@ function App() {
                 />
               </label>
               <label>
-                Recipe Link:
+                Harrowing:
                 <input
                   type="text"
                   name="recipeLink"
@@ -157,14 +167,10 @@ function App() {
           </div>
         )}
         <AddMealForm onMealAdded={handleMealAdded} />
-        <MealHolder meals={meals} onEdit={handleEdit} />
+        <MealHolder meals={meals} onEdit={handleEdit} onDelete={handleDelete} />
       </div>
     </div>
   );
 }
 
 export default App;
-
-
-
-
