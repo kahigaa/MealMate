@@ -1,10 +1,11 @@
+
 import React, { useState, useEffect } from 'react';
-import { fetchMeals, addMeal, updateMeal } from './API/meal';
 import { fetchMeals, addMeal, updateMeal } from './API/meal';
 import LoginPage from './Pages/LoginPage';
 import AddMealForm from './components/AddMealForm';
 import MealHolder from './components/MealHolder';
 import './App.css';
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -22,8 +23,8 @@ function App() {
           const data = await fetchMeals();
           setMeals(data);
         } catch (err) {
-          setError('Failed to load meals. Please try again.');
-          console.error('Error fetching meals:', err);
+          setError("Failed to load meals. Please try again.");
+          console.error("Error fetching meals:", err);
         }
       };
       loadMeals();
@@ -44,7 +45,9 @@ function App() {
     setEditingMeal(meal);
     setFormData({
       ...meal,
-      ingredients: Array.isArray(meal.ingredients) ? meal.ingredients : meal.ingredients?.split(',') || []
+      ingredients: Array.isArray(meal.ingredients)
+        ? meal.ingredients.join(", ")
+        : meal.ingredients || "",
     });
   };
 
@@ -56,17 +59,25 @@ function App() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      const updatedMeal = await updateMeal(editingMeal.id, formData);
+      console.log("Submitting formData:", formData);
+      const mealData = {
+        ...formData,
+        ingredients: formData.ingredients
+          .split(",")
+          .map((i) => i.trim())
+          .filter((i) => i),
+      };
+      console.log("Formatted mealData for API:", mealData);
+      const updatedMeal = await updateMeal(editingMeal.id, mealData);
+      console.log("Received updatedMeal:", updatedMeal);
       setMeals(
-        meals.map((meal) =>
-          meal.id === editingMeal.id ? updatedMeal : meal
-        )
+        meals.map((meal) => (meal.id === editingMeal.id ? updatedMeal : meal))
       );
       setEditingMeal(null);
       setFormData({});
     } catch (err) {
-      setError('cannot update try again.');
-      console.error('Error updating meal:', err);
+      setError("Failed to update meal: " + err.message);
+      console.error("Error updating meal:", err);
     }
   };
 
@@ -131,7 +142,9 @@ function App() {
         </div>
       )}
       <div className="top-bar">
-        <button className="logout-btn" onClick={handleLogout}>Logout</button>
+        <button className="logout-btn" onClick={handleLogout}>
+          Logout
+        </button>
       </div>
       <div className="content">
         {editingMeal && (
@@ -143,7 +156,7 @@ function App() {
                 <input
                   type="text"
                   name="name"
-                  value={formData.name || ''}
+                  value={formData.name || ""}
                   onChange={handleFormChange}
                 />
               </label>
@@ -152,7 +165,7 @@ function App() {
                 <input
                   type="text"
                   name="day"
-                  value={formData.day || ''}
+                  value={formData.day || ""}
                   onChange={handleFormChange}
                 />
               </label>
@@ -161,13 +174,8 @@ function App() {
                 <input
                   type="text"
                   name="ingredients"
-                  value={formData.ingredients?.join(', ') || ''}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      ingredients: e.target.value.split(',').map((i) => i.trim()),
-                    })
-                  }
+                  value={formData.ingredients || ""}
+                  onChange={handleFormChange}
                 />
               </label>
               <label>
@@ -175,7 +183,7 @@ function App() {
                 <input
                   type="text"
                   name="imageUrl"
-                  value={formData.imageUrl || ''}
+                  value={formData.imageUrl || ""}
                   onChange={handleFormChange}
                 />
               </label>
@@ -184,7 +192,7 @@ function App() {
                 <input
                   type="text"
                   name="recipeLink"
-                  value={formData.recipeLink || ''}
+                  value={formData.recipeLink || ""}
                   onChange={handleFormChange}
                 />
               </label>
