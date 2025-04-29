@@ -14,7 +14,7 @@ export const loginUser = async (username, password) => {
       throw new Error("Incorrect password");
     }
 
-    return user; // successful login returns user
+    return user; 
   } catch (error) {
     console.error("Login error:", error);
     throw error;

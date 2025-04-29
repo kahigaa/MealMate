@@ -4,14 +4,14 @@ const MealCard = ({ meal, onDelete, onEdit }) => {
   return (
     <div className="meal-card">
       <div className="meal-header">
-        <h3>{meal.name}</h3>
+        <h3>{meal.day}</h3>
       </div>
       {meal.imageUrl && (
         <img src={meal.imageUrl} alt={meal.name} className="meal-image" />
       )}
       <div className="meal-details">
         <p>
-          <strong>Day:</strong> {meal.day}
+          <strong>Name:</strong> {meal.name}
         </p>
         <p>
           <strong>Ingredients:</strong>
