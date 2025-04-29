@@ -6,18 +6,18 @@ import './MealHolder.css'
 function MealHolder({ selectedDay, onDaySelect}) {
     const [meals, setMeals] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError]= useState(null);
 
     
 
     useEffect(() => {
         const getMeals = async () => {
             try {
-                const data = await fetchMeals();
-                setMeals(data);
+                const response = await fetchMeals();
+                setMeals(response.data);
             }
-            catch (error) {
-                setError(error.message);
+            catch (err) {
+                setError(err.message);
             }
             finally {
                 setLoading(false);
