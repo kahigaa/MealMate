@@ -4,7 +4,7 @@ const MealCard = ({ meal, onDelete }) => {
   return (
     <div className="meal-card">
       <div className="meal-header">
-        <h3>{meal.name}</h3>
+        <h3>{meal.day}</h3>
       </div>
       {meal.imageUrl && (
   <img 
@@ -15,7 +15,7 @@ const MealCard = ({ meal, onDelete }) => {
 )}
       <div className="meal-details">
         <p>
-          <strong>Day:</strong> {meal.day}
+          <strong>Name:</strong> {meal.name}
         </p>
         <p><strong>Ingredients:</strong></p>
         <ul>
