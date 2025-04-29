@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { fetchMeals, addMeal, updateMeal } from './API/meal';
 import LoginPage from './Pages/LoginPage';
@@ -6,13 +5,10 @@ import AddMealForm from './components/AddMealForm';
 import MealHolder from './components/MealHolder';
 import './App.css';
 
-
 function App() {
   const [user, setUser] = useState(null);
   const [meals, setMeals] = useState([]);
   const [error, setError] = useState(null);
-  const [editingMeal, setEditingMeal] = useState(null);
-  const [formData, setFormData] = useState({});
   const [editingMeal, setEditingMeal] = useState(null);
   const [formData, setFormData] = useState({});
 
@@ -23,8 +19,8 @@ function App() {
           const data = await fetchMeals();
           setMeals(data);
         } catch (err) {
-          setError("Failed to load meals. Please try again.");
-          console.error("Error fetching meals:", err);
+          setError('Failed to load meals. Please try again.');
+          console.error('Error fetching meals:', err);
         }
       };
       loadMeals();
@@ -35,55 +31,9 @@ function App() {
     try {
       const newMeal = await addMeal(mealData);
       setMeals((prevMeals) => [...prevMeals, newMeal]);
-      setMeals((prevMeals) => [...prevMeals, newMeal]);
     } catch (err) {
       setError(err.message);
     }
-  };
-
-  const handleEdit = (meal) => {
-    setEditingMeal(meal);
-    setFormData({
-      ...meal,
-      ingredients: Array.isArray(meal.ingredients)
-        ? meal.ingredients.join(", ")
-        : meal.ingredients || "",
-    });
-  };
-
-  const handleFormChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      console.log("Submitting formData:", formData);
-      const mealData = {
-        ...formData,
-        ingredients: formData.ingredients
-          .split(",")
-          .map((i) => i.trim())
-          .filter((i) => i),
-      };
-      console.log("Formatted mealData for API:", mealData);
-      const updatedMeal = await updateMeal(editingMeal.id, mealData);
-      console.log("Received updatedMeal:", updatedMeal);
-      setMeals(
-        meals.map((meal) => (meal.id === editingMeal.id ? updatedMeal : meal))
-      );
-      setEditingMeal(null);
-      setFormData({});
-    } catch (err) {
-      setError("Failed to update meal: " + err.message);
-      console.error("Error updating meal:", err);
-    }
-  };
-
-  const cancelEdit = () => {
-    setEditingMeal(null);
-    setFormData({});
   };
 
   const handleEdit = (meal) => {
@@ -142,70 +92,7 @@ function App() {
         </div>
       )}
       <div className="top-bar">
-        <button className="logout-btn" onClick={handleLogout}>
-          Logout
-        </button>
-      </div>
-      <div className="content">
-        {editingMeal && (
-          <div className="edit-form">
-            <h3>Edit Meal</h3>
-            <form onSubmit={handleFormSubmit}>
-              <label>
-                Name:
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name || ""}
-                  onChange={handleFormChange}
-                />
-              </label>
-              <label>
-                Day:
-                <input
-                  type="text"
-                  name="day"
-                  value={formData.day || ""}
-                  onChange={handleFormChange}
-                />
-              </label>
-              <label>
-                Ingredients (comma-separated):
-                <input
-                  type="text"
-                  name="ingredients"
-                  value={formData.ingredients || ""}
-                  onChange={handleFormChange}
-                />
-              </label>
-              <label>
-                Image URL:
-                <input
-                  type="text"
-                  name="imageUrl"
-                  value={formData.imageUrl || ""}
-                  onChange={handleFormChange}
-                />
-              </label>
-              <label>
-                Recipe Link:
-                <input
-                  type="text"
-                  name="recipeLink"
-                  value={formData.recipeLink || ""}
-                  onChange={handleFormChange}
-                />
-              </label>
-              <button type="submit">Save</button>
-              <button type="button" onClick={cancelEdit}>
-                Cancel
-              </button>
-            </form>
-          </div>
-        )}
-        <AddMealForm onMealAdded={handleMealAdded} />
-        <MealHolder meals={meals} onEdit={handleEdit} />
-      </div>
+        <button className="logout-btn" onClick={handleLogout}>Logout</button>
       </div>
       <div className="content">
         {editingMeal && (
@@ -277,6 +164,7 @@ function App() {
 }
 
 export default App;
+
 
 
 
