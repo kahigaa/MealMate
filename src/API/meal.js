@@ -26,3 +26,14 @@ export const fetchMeals = async () => {
 };
 
 
+export const updateMeal = async (id, mealData) => {
+  const response = await fetch(`http://localhost:3000/meals/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(mealData),
+  });
+  if (!response.ok) {
+    throw new Error('Failed to update meal');
+  }
+  return await response.json();
+};
