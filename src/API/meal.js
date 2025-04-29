@@ -14,6 +14,7 @@ export const addMeal = async (meal) => {
 export const fetchMeals = async () => {
   try {
     const response = await fetch(`${API_URL}`);
+  
     console.log("API response:", response);
     if (!response.ok) {
       throw new Error("Failed to fetch meals");
@@ -27,7 +28,7 @@ export const fetchMeals = async () => {
 
 export const updateMeal = async (id, mealData) => {
   try {
-    const response = await fetch(`/api/meals/${id}`, {
+    const response = await fetch(`${API_URL}/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

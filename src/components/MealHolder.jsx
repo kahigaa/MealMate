@@ -1,5 +1,5 @@
 import React from "react";
-import MealCard from "./MealCard";
+import MealCard from "./MealsCard";
 import "../MealHolder.css";
 
 const MealHolder = ({ meals, onEdit }) => {

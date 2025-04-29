@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchMeals, addMeal, updateMeal } from './API/meal'; // Assume updateMeal exists
+import { fetchMeals, addMeal, updateMeal } from './API/meal';
 import LoginPage from './Pages/LoginPage';
 import AddMealForm from './components/AddMealForm';
 import MealHolder from './components/MealHolder';
@@ -9,8 +9,8 @@ function App() {
   const [user, setUser] = useState(null);
   const [meals, setMeals] = useState([]);
   const [error, setError] = useState(null);
-  const [editingMeal, setEditingMeal] = useState(null); // Track meal being edited
-  const [formData, setFormData] = useState({}); // Store form data
+  const [editingMeal, setEditingMeal] = useState(null);
+  const [formData, setFormData] = useState({});
 
   useEffect(() => {
     if (user) {
@@ -38,7 +38,10 @@ function App() {
 
   const handleEdit = (meal) => {
     setEditingMeal(meal);
-    setFormData(meal); // Pre-fill form
+    setFormData({
+      ...meal,
+      ingredients: Array.isArray(meal.ingredients) ? meal.ingredients : meal.ingredients?.split(',') || []
+    });
   };
 
   const handleFormChange = (e) => {
@@ -49,7 +52,7 @@ function App() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      const updatedMeal = await updateMeal(editingMeal.id, formData); // API call
+      const updatedMeal = await updateMeal(editingMeal.id, formData);
       setMeals(
         meals.map((meal) =>
           meal.id === editingMeal.id ? updatedMeal : meal
