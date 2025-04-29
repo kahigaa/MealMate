@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../MealCard.css';
 
-const MealCard = ({ meal, onEdit }) => {
+const MealCard = ({ meal, onEdit, onDelete }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const ingredients = Array.isArray(meal.ingredients) ? meal.ingredients : [];
@@ -57,7 +57,7 @@ const MealCard = ({ meal, onEdit }) => {
             <button className="edit-meal-btn" onClick={() => onEdit(meal)}>
               Edit Meal
             </button>
-            <button className="delete-meal-btn" onClick={() => {/* Handle delete here */}}>
+            <button className="delete-meal-btn" onClick={() => onDelete(meal.id)}>
               Delete Meal
             </button>
           </div>
