@@ -2,16 +2,8 @@
   "meals": [
     {
       "id": "1",
-      "name": "Ugali with Sukuma Wooo",
-      "ingredients": [
-        "Maize flour",
-        "water",
-        "kale",
-        "onions",
-        "tomatoes",
-        "cooking oil",
-        "salt"
-      ],
+      "name": "Ugali with Sukuma Wiki",
+      "ingredients": "Maize flour, water, kale, onions, tomatoes, cooking oil, salt",
       "day": "Monday",
       "recipeLink": "https://shorturl.at/ojQlX",
       "imageUrl": "public/Images/ugali sukuma.jpeg"

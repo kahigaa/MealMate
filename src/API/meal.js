@@ -35,7 +35,7 @@ export const updateMeal = async (id, mealData) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        ...meal greatnessData,
+        ...mealData,
         ingredients: Array.isArray(mealData.ingredients)
           ? mealData.ingredients
           : mealData.ingredients.split(",").map((i) => i.trim()),
