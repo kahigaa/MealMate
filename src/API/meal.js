@@ -35,7 +35,7 @@ export const updateMeal = async (id, mealData) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        ...mealData,
+        ...meal greatnessData,
         ingredients: Array.isArray(mealData.ingredients)
           ? mealData.ingredients
           : mealData.ingredients.split(",").map((i) => i.trim()),
@@ -53,6 +53,27 @@ export const updateMeal = async (id, mealData) => {
     return updatedMeal;
   } catch (error) {
     console.error("Error updating meal:", error);
+    throw error;
+  }
+};
+
+export const deleteMeal = async (id) => {
+  try {
+    console.log("Deleting meal with ID:", id);
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(
+        `Delete meal failed: Status ${response.status}, ${errorText}`
+      );
+      throw new Error(errorText || "Failed to delete meal");
+    }
+    console.log("Delete meal successful :", id);
+    return response.ok;
+  } catch (error) {
+    console.error("Error deleting meal:", error);
     throw error;
   }
 };
