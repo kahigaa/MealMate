@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { fetchMeals, addMeal, updateMeal, deleteMeal } from './API/meal';
+import { fetchMeals, addMeal, updateMeal } from './API/meal';
 import LoginPage from './Pages/LoginPage';
 import AddMealForm from './components/AddMealForm';
 import MealHolder from './components/MealHolder';
+import DailyView from './Pages/DailyView';
 import './App.css';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
   const [error, setError] = useState(null);
   const [editingMeal, setEditingMeal] = useState(null);
   const [formData, setFormData] = useState({});
+  const [viewMode, setViewMode] = useState('all'); // 'daily' or 'all'
 
   useEffect(() => {
     if (user) {
@@ -40,18 +42,10 @@ function App() {
     setEditingMeal(meal);
     setFormData({
       ...meal,
-      ingredients: Array.isArray(meal.ingredients) ? meal.ingredients : meal.ingredients?.split(',') || []
+      ingredients: Array.isArray(meal.ingredients)
+        ? meal.ingredients
+        : meal.ingredients?.split(',') || [],
     });
-  };
-
-  const handleDelete = async (id) => {
-    try {
-      await deleteMeal(id);
-      setMeals(meals.filter(meal => meal.id !== id));
-    } catch (err) {
-      setError('Failed to delete meal. Please try again.');
-      console.error('Error deleting meal:', err);
-    }
   };
 
   const handleFormChange = (e) => {
@@ -71,7 +65,7 @@ function App() {
       setEditingMeal(null);
       setFormData({});
     } catch (err) {
-      setError('cannot update try again.');
+      setError('Cannot update. Try again.');
       console.error('Error updating meal:', err);
     }
   };
@@ -102,8 +96,13 @@ function App() {
         </div>
       )}
       <div className="top-bar">
-        <button className="logout-btn" onClick={handleLogout}>Logout</button>
+        <button onClick={() => setViewMode('daily')}>Daily</button>
+        <button onClick={() => setViewMode('all')}>Weekly</button>
+        <button className="logout-btn" onClick={handleLogout}>
+          Logout
+        </button>
       </div>
+
       <div className="content">
         {editingMeal && (
           <div className="edit-form">
@@ -136,7 +135,9 @@ function App() {
                   onChange={(e) =>
                     setFormData({
                       ...formData,
-                      ingredients: e.target.value.split(',').map((i) => i.trim()),
+                      ingredients: e.target.value
+                        .split(',')
+                        .map((i) => i.trim()),
                     })
                   }
                 />
@@ -151,7 +152,7 @@ function App() {
                 />
               </label>
               <label>
-                Harrowing:
+                Recipe Link:
                 <input
                   type="text"
                   name="recipeLink"
@@ -166,8 +167,14 @@ function App() {
             </form>
           </div>
         )}
+
         <AddMealForm onMealAdded={handleMealAdded} />
-        <MealHolder meals={meals} onEdit={handleEdit} onDelete={handleDelete} />
+
+        {viewMode === 'daily' ? (
+          <DailyView meals={meals} onEdit={handleEdit} />
+        ) : (
+          <MealHolder meals={meals} onEdit={handleEdit} />
+        )}
       </div>
     </div>
   );
