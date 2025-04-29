@@ -1,6 +1,6 @@
-import React from 'react';
-import MealCard from './MealsCard';
-import '../MealHolder.css';
+import React from "react";
+import MealCard from "./MealsCard";
+import "../MealHolder.css";
 
 const MealHolder = ({ meals, onEdit }) => {
   return (
