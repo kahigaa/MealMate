@@ -1,0 +1,50 @@
+.meal-holder-container {
+  flex: 1;
+  margin-left: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+}
+
+.meal-holder-title {
+  margin-top: 0;
+  color: #333;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.meal-cards-wrapper {
+  overflow-y: auto;
+  flex-grow: 1;
+  padding-right: 10px;
+  margin-right: -10px;
+}
+
+/* Scrollbar styling */
+.meal-cards-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.meal-cards-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.meal-cards-wrapper::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.meal-cards-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.no-meals-message {
+  color: #666;
+  text-align: center;
+  margin-top: 40px;
+}

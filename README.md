@@ -1,12 +1,85 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# MealMate 🍽️
 
-Currently, two official plugins are available:
+MealMate is a simple React-based meal management application that allows users to log in, add, edit, and delete meals. Each meal can include a name, day, list of ingredients, image, and a recipe link. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🧾 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔐 User Login (simple state-based authentication)
+- ➕ Add meals with ingredients, image, and recipe link
+- ✏️ Edit existing meals inline
+- ❌ Delete meals with confirmation
+- 💾 Persistent data via external API
+- 🎨 Clean and responsive UI (custom CSS)
+
+---
+
+## 📁 Project Structure
+
+```bash
+.
+├── src/
+│   ├── API/
+│   │   └── meal.js        # API calls for meals (fetch, add, update, delete)
+│   ├── Pages/
+│   │   └── LoginPage.js   # Simple login page component
+│   ├── components/
+│   │   ├── AddMealForm.js # Form to add a new meal
+│   │   └── MealHolder.js  # Displays all meals with edit/delete options
+│   ├── App.js             # Main app logic
+│   └── App.css            # App styling
+└── README.md
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Make sure you have:
+
+- Node.js (v14 or higher)
+- npm 
+
+### Installation
+
+```bash
+git clone https://github.com/your-username/mealmate.git
+
+
+
+cd mealmate
+npm install
+```
+
+### Run the App
+
+```bash
+npm run dev
+```
+
+This will start the app at `http://localhost:3000`.
+
+---
+
+
+
+## 🧪 Technologies Used
+
+- React 
+- JavaScript 
+- CSS
+-  API Integration
+
+
+## 🙌 Devs
+
+**Everlyn Njoki**
+**Adrian Kahiga**
+**Ian ayiro**
+
+
+
