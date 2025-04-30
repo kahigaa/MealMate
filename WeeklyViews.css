@@ -1,8 +1,5 @@
 
 
-
-/* WeeklyView.css */
-
 .weekly-view {
     width: 100%;
     overflow-x: auto;
@@ -51,7 +48,7 @@
   }
   
 
-  /* Highlight current day */
+  
   .day-header.today {
     background: #e3f2fd;
     color: #1976d2;
